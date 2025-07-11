@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Obsługa komunikatu Flash -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Załóż nową kartę</h2>
+    <p class="mb-3">Lista kont bez przypisanej karty:</p>
+
+    {% if accounts %}  
+        <div class="list-group">
+            {% for account in accounts %}
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>Konto nr:</strong> {{ account.account_nr }}
+                    </div>
+                    <form method="POST" action="{{ url_for('create_card') }}" class="mb-0">
+                        <input type="hidden" name="account_nr" value="{{ account.account_nr }}">
+                        <button type="submit" class="btn btn-primary">Załóż kartę</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            Brak kont bez przypisanej karty.
+        </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

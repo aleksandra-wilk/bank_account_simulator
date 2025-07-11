@@ -1,0 +1,16 @@
+# Ignoruj środowisko wirtualne
+venv/
+
+# Ignoruj pliki tymczasowe Pythona
+__pycache__/
+
+# Ignoruj pliki konfiguracyjne środowiska
+*.pyc
+*.pyo
+*.pyd
+
+# Ignoruj folder `instance` (jeśli trzyma dane lokalne)
+instance/
+
+# Ignoruj systemowe śmieci z macOS
+.DS_Store
